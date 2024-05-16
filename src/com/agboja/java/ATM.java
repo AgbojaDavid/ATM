@@ -37,13 +37,10 @@ public class ATM {
         } else {
             System.out.println("Invalid Account Number or PIN. Exiting...");
             this.currentAccount = null; // Set currentAccount to null if invalid
-//			return; // Terminate the method here
         }
-//		scanner.close();
     }
 
     public void menu() {
-//		int selectedAccountNumber; // Declare the variable here
         System.out.println("\nSelect an operation:");
         System.out.println("1. Deposit");
         System.out.println("2. Withdraw");
@@ -89,38 +86,21 @@ public class ATM {
                 transfer(transferAmount, recipientAccountNumber);
                 break;
             case 4:
-//			System.out.println("Enter Account Number:");
-//			selectedAccountNumber = scanner.nextInt();
-//			currentAccount = accounts.get(selectedAccountNumber); // Update currentAccount with the newly selected
-//																	// account
-//			if (currentAccount != null) {
                 System.out.println("Account Balance: " + currentAccount.getBalance());
-//			} else {
-//				System.out.println("Account not found.");
-//			}
                 break;
             case 5:
-//			System.out.println("Enter Account Number:");
-//			selectedAccountNumber = scanner.nextInt();
-//			currentAccount = accounts.get(selectedAccountNumber); // Update currentAccount with the newly selected
-//																	// account
-//			if (currentAccount != null) {
                 printTransactionHistory(currentAccount.getTransactionHistory());
-//			} else {
-//				System.out.println("No account selected.");
-//			}
                 break;
             case 6:
                 System.out.println("Thank You For Banking With Us");
                 System.out.println("Exiting...");
                 System.out.println("Take Your Card");
-//			scanner.close();
+
                 return;
             default:
                 System.out.println("Invalid Selection");
                 break;
         }
-//		scanner.close();
         menu(); // After completing an operation, show menu again
     }
 
@@ -133,8 +113,6 @@ public class ATM {
             System.out.println("No account selected.");
         }
     }
-
-
     public void withdraw(double amount) {
         if (currentAccount != null) {
             if (currentAccount.withdraw(amount)) {
@@ -148,12 +126,8 @@ public class ATM {
             System.out.println("No account selected.");
         }
     }
-
-
-
     public void transfer(double amount, int recipientAccountNumber) {
         Account recipient = accounts.get(recipientAccountNumber);
-
         if (recipient != null) {
             currentAccount.transfer(amount, recipient);
             transactionHistory.add(new Transaction(TransactionType.TRANSFER, amount)); // Add to global history
@@ -162,16 +136,6 @@ public class ATM {
             System.out.println("recipient account not found.");
         }
     }
-
-//	private Account getAccountByNumber(int accountNumber) {
-//		// This method should retrieve the account by its number from a database or
-//		// repository
-//		// For simplicity, I'm assuming a single account for demonstration purposes
-//		Account acc = accounts.get(accountNumber);
-//		return acc != null && acc.getAccountNumber() == accountNumber ? acc : null;
-//
-//	}
-
     public void printTransactionHistory(List<Transaction> transactions) {
         System.out.println("Transaction History:");
         for (Transaction transaction : transactions) {
